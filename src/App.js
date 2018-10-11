@@ -14,12 +14,13 @@ class App extends Component {
 
   addTodo(todo) {
   	const { todos, totalTodos, remainingTodos } = this.state;
-
-  	this.setState(state => ({
-  	  todos: todo ? [...todos, {task: todo, id: id++, completed: false}] : todos,
-  	  totalTodos: todo ? todos.length + 1 : totalTodos,
-  	  remainingTodos: todo ? remainingTodos + 1 : remainingTodos
-  	}));
+    if(todo) {
+    	this.setState(state => ({
+    	  todos: [...todos, {task: todo, id: id++, completed: false}],
+    	  totalTodos: todos.length + 1,
+    	  remainingTodos: remainingTodos + 1
+    	}));
+    }
   }
 
   toggleTodo = (clickedTodo) => {
@@ -40,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>TO Do App</h1>
+          <h1>Todo App</h1>
         </div>
         <div>
         <input 
